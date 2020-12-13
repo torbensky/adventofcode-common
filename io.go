@@ -3,6 +3,7 @@ package common
 import (
 	"bufio"
 	"io"
+	"io/ioutil"
 	"log"
 )
 
@@ -88,4 +89,11 @@ func SplitRecordsFunc(data []byte, atEOF bool) (advance int, token []byte, err e
 
 	// Need MOAR
 	return 0, nil, nil
+}
+
+// ReadAll reads all data from the reader, or fatally errors if unable
+func ReadAll(reader io.Reader) []byte {
+	data, err := ioutil.ReadAll(reader)
+	MustNotError(err)
+	return data
 }
