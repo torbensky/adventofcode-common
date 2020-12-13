@@ -5,7 +5,8 @@ import (
 	"os"
 )
 
-func openFile(path string) *os.File {
+// OpenFile opens the specified file, or fatally errors if unable to
+func OpenFile(path string) *os.File {
 	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
@@ -32,5 +33,5 @@ func GetInputFilePath() string {
 
 // OpenInputFile opens the default input file specified by process args
 func OpenInputFile() *os.File {
-	return openFile(GetInputFilePath())
+	return OpenFile(GetInputFilePath())
 }
